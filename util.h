@@ -137,3 +137,4 @@ static inline uint32_t bswap32(uint32_t x) {
 	__asm__ __volatile__ ("bswapl %0" : "=r" (x) : "0" (x));
 	return x;
 }
+uint64_t sharetotarg(double diff);

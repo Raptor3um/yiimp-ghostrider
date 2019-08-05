@@ -512,7 +512,11 @@ bool client_submit(YAAMP_CLIENT *client, json_value *json_params)
 	uint64_t hash_int = get_hash_difficulty(submitvalues.hash_bin);
 	uint64_t user_target = diff_to_target(client->difficulty_actual);
 	uint64_t coin_target = decode_compact(templ->nbits);
+	uint64_t hashcomb = * (uint64_t *) &submitvalues.hash_bin[24];
 	if (templ->nbits && !coin_target) coin_target = 0xFFFF000000000000ULL;
+
+        debuglog("hash %016lx \n", hashcomb);
+        debuglog("targ %016lx \n", sharetotarg(client->difficulty_actual));
 
 	if (g_debuglog_hash) {
 		debuglog("%016llx actual\n", hash_int);
